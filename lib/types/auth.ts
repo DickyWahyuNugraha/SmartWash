@@ -22,6 +22,7 @@ export interface User {
   createdAt: string;
   tipeBulu?: number;
   furType?: string;
+  gender?: "jantan" | "betina";
 }
 
 export interface Session {

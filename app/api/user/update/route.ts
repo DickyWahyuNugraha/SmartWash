@@ -4,7 +4,7 @@ import { query } from "@/lib/db";
 async function handleUpdate(request: NextRequest) {
   try {
     const body = await request.json();
-    const { userId: userIdStr, age, ageUnit, weight } = body;
+    const { userId: userIdStr, age, ageUnit, weight, gender, catName, catType, password } = body;
 
     // Validate input
     if (!userIdStr) {
@@ -14,9 +14,9 @@ async function handleUpdate(request: NextRequest) {
       );
     }
 
-    if (age === undefined || !ageUnit || weight === undefined) {
+    if (age === undefined || !ageUnit || weight === undefined || !gender || !catName || !catType) {
       return NextResponse.json(
-        { success: false, message: "Semua field harus diisi" },
+        { success: false, message: "Semua field profil harus diisi" },
         { status: 400 }
       );
     }
@@ -25,6 +25,18 @@ async function handleUpdate(request: NextRequest) {
     if (isNaN(userId)) {
       return NextResponse.json(
         { success: false, message: "User ID tidak valid" },
+        { status: 400 }
+      );
+    }
+
+    // Check if new catName already exists for another user
+    const checkNameResult = await query(
+      "SELECT id FROM users WHERE cat_name = $1 AND id != $2 LIMIT 1",
+      [catName, userId]
+    );
+    if (checkNameResult.rows.length > 0) {
+      return NextResponse.json(
+        { success: false, message: "Nama kucing sudah terdaftar" },
         { status: 400 }
       );
     }
@@ -44,10 +56,25 @@ async function handleUpdate(request: NextRequest) {
     // Update user in PostgreSQL
     const updateResult = await query(
       `UPDATE users
-       SET age = $1, age_unit = $2, weight = $3
-       WHERE id = $4
-       RETURNING id, email, cat_name, cat_type, age, age_unit, weight, fur_type, created_at, tipe_bulu`,
-      [parseInt(age.toString()), ageUnit, weightInGrams, userId]
+       SET age = $1, 
+           age_unit = $2, 
+           weight = $3, 
+           gender = $4, 
+           cat_name = $5, 
+           cat_type = $6, 
+           password = COALESCE(NULLIF($7, ''), password)
+       WHERE id = $8
+       RETURNING id, email, cat_name, cat_type, age, age_unit, weight, fur_type, created_at, tipe_bulu, gender`,
+      [
+        parseInt(age.toString()), 
+        ageUnit, 
+        weightInGrams, 
+        gender, 
+        catName, 
+        catType, 
+        password || "", 
+        userId
+      ]
     );
 
     const updatedUser = updateResult.rows[0];
@@ -69,6 +96,7 @@ async function handleUpdate(request: NextRequest) {
           furType: updatedUser.fur_type,
           createdAt: updatedUser.created_at,
           tipeBulu: updatedUser.tipe_bulu,
+          gender: updatedUser.gender,
         },
       },
       { status: 200 }

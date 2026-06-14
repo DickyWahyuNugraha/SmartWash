@@ -1,0 +1,709 @@
+{
+  "Persia": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "80–120 g",
+      "berat_betina_str": "80–110 g",
+      "rata_jantan": 0.1,
+      "rata_betina": 0.09,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "350–450 g",
+      "berat_betina_str": "300–400 g",
+      "rata_jantan": 0.4,
+      "rata_betina": 0.35,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "700–900 g",
+      "berat_betina_str": "600–800 g",
+      "rata_jantan": 0.8,
+      "rata_betina": 0.7,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.0–1.3 kg",
+      "berat_betina_str": "0.9–1.2 kg",
+      "rata_jantan": 1.15,
+      "rata_betina": 1.05,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.3–1.8 kg",
+      "berat_betina_str": "1.2–1.6 kg",
+      "rata_jantan": 1.55,
+      "rata_betina": 1.4,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.8–2.5 kg",
+      "berat_betina_str": "1.6–2.2 kg",
+      "rata_jantan": 2.15,
+      "rata_betina": 1.9,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "2.8–3.6 kg",
+      "berat_betina_str": "2.5–3.1 kg",
+      "rata_jantan": 3.2,
+      "rata_betina": 2.8,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "3.5–5.0 kg",
+      "berat_betina_str": "3.0–4.5 kg",
+      "rata_jantan": 4.25,
+      "rata_betina": 3.75,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "4.0–6.3 kg",
+      "berat_betina_str": "3.5–5.4 kg",
+      "rata_jantan": 5.15,
+      "rata_betina": 4.45,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3–6 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "4.0–6.3 kg",
+      "berat_betina_str": "3.6–5.4 kg",
+      "rata_jantan": 5.15,
+      "rata_betina": 4.5,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "3.5–6.0 kg",
+      "berat_betina_str": "3.2–5.0 kg",
+      "rata_jantan": 4.75,
+      "rata_betina": 4.1,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ],
+  "Anggora (Turkish)": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "70–100 g",
+      "berat_betina_str": "65–95 g",
+      "rata_jantan": 0.085,
+      "rata_betina": 0.08,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "280–380 g",
+      "berat_betina_str": "250–340 g",
+      "rata_jantan": 0.33,
+      "rata_betina": 0.295,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "600–800 g",
+      "berat_betina_str": "540–720 g",
+      "rata_jantan": 0.7,
+      "rata_betina": 0.63,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "0.9–1.2 kg",
+      "berat_betina_str": "0.8–1.0 kg",
+      "rata_jantan": 1.05,
+      "rata_betina": 0.9,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.2–1.6 kg",
+      "berat_betina_str": "1.0–1.4 kg",
+      "rata_jantan": 1.4,
+      "rata_betina": 1.2,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.6–2.2 kg",
+      "berat_betina_str": "1.4–1.9 kg",
+      "rata_jantan": 1.9,
+      "rata_betina": 1.65,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "2.2–3.0 kg",
+      "berat_betina_str": "1.8–2.6 kg",
+      "rata_jantan": 2.6,
+      "rata_betina": 2.2,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "2.8–3.8 kg",
+      "berat_betina_str": "2.0–3.0 kg",
+      "rata_jantan": 3.3,
+      "rata_betina": 2.5,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "3.2–4.5 kg",
+      "berat_betina_str": "2.3–3.6 kg",
+      "rata_jantan": 3.85,
+      "rata_betina": 2.95,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3–6 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "3.2–4.5 kg",
+      "berat_betina_str": "2.3–3.6 kg",
+      "rata_jantan": 3.85,
+      "rata_betina": 2.95,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "2.8–4.2 kg",
+      "berat_betina_str": "2.0–3.4 kg",
+      "rata_jantan": 3.5,
+      "rata_betina": 2.7,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ],
+  "Maine Coon": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "90–170 g",
+      "berat_betina_str": "80–150 g",
+      "rata_jantan": 0.13,
+      "rata_betina": 0.115,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "400–600 g",
+      "berat_betina_str": "350–500 g",
+      "rata_jantan": 0.5,
+      "rata_betina": 0.425,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "0.9–1.4 kg",
+      "berat_betina_str": "0.8–1.2 kg",
+      "rata_jantan": 1.15,
+      "rata_betina": 1.0,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.4–2.0 kg",
+      "berat_betina_str": "1.2–1.8 kg",
+      "rata_jantan": 1.7,
+      "rata_betina": 1.5,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "2.0–3.0 kg",
+      "berat_betina_str": "1.8–2.5 kg",
+      "rata_jantan": 2.5,
+      "rata_betina": 2.15,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "3.2–4.5 kg",
+      "berat_betina_str": "2.5–3.6 kg",
+      "rata_jantan": 3.85,
+      "rata_betina": 3.05,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "4.5–6.5 kg",
+      "berat_betina_str": "3.5–5.0 kg",
+      "rata_jantan": 5.5,
+      "rata_betina": 4.25,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "5.0–7.5 kg",
+      "berat_betina_str": "3.8–5.5 kg",
+      "rata_jantan": 6.25,
+      "rata_betina": 4.65,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "6.0–8.5 kg",
+      "berat_betina_str": "4.0–6.0 kg",
+      "rata_jantan": 7.25,
+      "rata_betina": 5.0,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3–5 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "7.0–10.0 kg",
+      "berat_betina_str": "4.5–6.8 kg",
+      "rata_jantan": 8.5,
+      "rata_betina": 5.65,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "6.0–9.0 kg",
+      "berat_betina_str": "4.0–6.5 kg",
+      "rata_jantan": 7.5,
+      "rata_betina": 5.25,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ],
+  "British Shorthair": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "85–120 g",
+      "berat_betina_str": "80–110 g",
+      "rata_jantan": 0.103,
+      "rata_betina": 0.095,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "350–500 g",
+      "berat_betina_str": "300–450 g",
+      "rata_jantan": 0.425,
+      "rata_betina": 0.375,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "700–1.0 kg",
+      "berat_betina_str": "600–900 g",
+      "rata_jantan": 0.85,
+      "rata_betina": 0.75,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.0–1.5 kg",
+      "berat_betina_str": "0.9–1.3 kg",
+      "rata_jantan": 1.25,
+      "rata_betina": 1.1,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.5–2.2 kg",
+      "berat_betina_str": "1.3–1.9 kg",
+      "rata_jantan": 1.85,
+      "rata_betina": 1.6,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "2.0–3.0 kg",
+      "berat_betina_str": "1.8–2.6 kg",
+      "rata_jantan": 2.5,
+      "rata_betina": 2.2,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "3.0–4.5 kg",
+      "berat_betina_str": "2.5–3.8 kg",
+      "rata_jantan": 3.75,
+      "rata_betina": 3.15,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "3.5–5.5 kg",
+      "berat_betina_str": "3.0–4.5 kg",
+      "rata_jantan": 4.5,
+      "rata_betina": 3.75,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "4.5–7.0 kg",
+      "berat_betina_str": "3.5–5.5 kg",
+      "rata_jantan": 5.75,
+      "rata_betina": 4.5,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3+ tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "5.0–8.0 kg",
+      "berat_betina_str": "4.0–6.5 kg",
+      "rata_jantan": 6.5,
+      "rata_betina": 5.25,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "4.5–7.5 kg",
+      "berat_betina_str": "3.5–6.0 kg",
+      "rata_jantan": 6.0,
+      "rata_betina": 4.75,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ],
+  "Scottish Fold": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "80–110 g",
+      "berat_betina_str": "75–100 g",
+      "rata_jantan": 0.095,
+      "rata_betina": 0.0875,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "320–430 g",
+      "berat_betina_str": "280–380 g",
+      "rata_jantan": 0.375,
+      "rata_betina": 0.33,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "650–900 g",
+      "berat_betina_str": "570–800 g",
+      "rata_jantan": 0.775,
+      "rata_betina": 0.685,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.0–1.4 kg",
+      "berat_betina_str": "0.85–1.2 kg",
+      "rata_jantan": 1.2,
+      "rata_betina": 1.025,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.4–1.9 kg",
+      "berat_betina_str": "1.2–1.6 kg",
+      "rata_jantan": 1.65,
+      "rata_betina": 1.4,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "2.0–2.8 kg",
+      "berat_betina_str": "1.7–2.3 kg",
+      "rata_jantan": 2.4,
+      "rata_betina": 2.0,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "2.8–4.0 kg",
+      "berat_betina_str": "2.2–3.2 kg",
+      "rata_jantan": 3.4,
+      "rata_betina": 2.7,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "3.2–4.8 kg",
+      "berat_betina_str": "2.5–3.6 kg",
+      "rata_jantan": 4.0,
+      "rata_betina": 3.05,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "4.0–6.0 kg",
+      "berat_betina_str": "2.7–4.0 kg",
+      "rata_jantan": 5.0,
+      "rata_betina": 3.35,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3+ tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "4.0–6.0 kg",
+      "berat_betina_str": "2.7–4.0 kg",
+      "rata_jantan": 5.0,
+      "rata_betina": 3.35,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "3.5–5.5 kg",
+      "berat_betina_str": "2.4–3.8 kg",
+      "rata_jantan": 4.5,
+      "rata_betina": 3.1,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ],
+  "Ragdoll": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "90–140 g",
+      "berat_betina_str": "85–130 g",
+      "rata_jantan": 0.115,
+      "rata_betina": 0.1075,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "400–560 g",
+      "berat_betina_str": "360–500 g",
+      "rata_jantan": 0.48,
+      "rata_betina": 0.43,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "0.9–1.3 kg",
+      "berat_betina_str": "0.8–1.1 kg",
+      "rata_jantan": 1.1,
+      "rata_betina": 0.95,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.4–2.0 kg",
+      "berat_betina_str": "1.2–1.7 kg",
+      "rata_jantan": 1.7,
+      "rata_betina": 1.45,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.9–2.7 kg",
+      "berat_betina_str": "1.6–2.3 kg",
+      "rata_jantan": 2.3,
+      "rata_betina": 1.95,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "3.0–4.5 kg",
+      "berat_betina_str": "2.5–3.6 kg",
+      "rata_jantan": 3.75,
+      "rata_betina": 3.05,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "4.5–6.0 kg",
+      "berat_betina_str": "3.5–5.0 kg",
+      "rata_jantan": 5.25,
+      "rata_betina": 4.25,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "5.0–7.0 kg",
+      "berat_betina_str": "3.8–5.5 kg",
+      "rata_jantan": 6.0,
+      "rata_betina": 4.65,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "6.0–8.0 kg",
+      "berat_betina_str": "4.0–6.0 kg",
+      "rata_jantan": 7.0,
+      "rata_betina": 5.0,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3–4 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "6.8–9.1 kg",
+      "berat_betina_str": "4.5–6.8 kg",
+      "rata_jantan": 7.95,
+      "rata_betina": 5.65,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "6.0–8.5 kg",
+      "berat_betina_str": "4.0–6.5 kg",
+      "rata_jantan": 7.25,
+      "rata_betina": 5.25,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ],
+  "Kucing Kampung (Lokal)": [
+    {
+      "usia": "Baru lahir",
+      "fase": "Kitten",
+      "berat_jantan_str": "100–150 g",
+      "berat_betina_str": "90–140 g",
+      "rata_jantan": 0.125,
+      "rata_betina": 0.115,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "1 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "350–500 g",
+      "berat_betina_str": "300–450 g",
+      "rata_jantan": 0.425,
+      "rata_betina": 0.375,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "2 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "700–950 g",
+      "berat_betina_str": "600–850 g",
+      "rata_jantan": 0.825,
+      "rata_betina": 0.725,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "3 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.0–1.5 kg",
+      "berat_betina_str": "0.9–1.3 kg",
+      "rata_jantan": 1.25,
+      "rata_betina": 1.1,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "4 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.4–2.0 kg",
+      "berat_betina_str": "1.2–1.7 kg",
+      "rata_jantan": 1.7,
+      "rata_betina": 1.45,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "6 bulan",
+      "fase": "Kitten",
+      "berat_jantan_str": "1.8–2.5 kg",
+      "berat_betina_str": "1.5–2.2 kg",
+      "rata_jantan": 2.15,
+      "rata_betina": 1.85,
+      "keterangan": "Pertumbuhan cepat, awasi setiap minggu"
+    },
+    {
+      "usia": "9 bulan",
+      "fase": "Remaja",
+      "berat_jantan_str": "2.5–3.5 kg",
+      "berat_betina_str": "2.0–3.0 kg",
+      "rata_jantan": 3.0,
+      "rata_betina": 2.5,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "1 tahun",
+      "fase": "Remaja",
+      "berat_jantan_str": "3.0–4.5 kg",
+      "berat_betina_str": "2.5–3.8 kg",
+      "rata_jantan": 3.75,
+      "rata_betina": 3.15,
+      "keterangan": "Pertumbuhan mulai melambat"
+    },
+    {
+      "usia": "2 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "3.5–5.0 kg",
+      "berat_betina_str": "2.5–4.0 kg",
+      "rata_jantan": 4.25,
+      "rata_betina": 3.25,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "3–6 tahun",
+      "fase": "Dewasa",
+      "berat_jantan_str": "3.5–5.0 kg",
+      "berat_betina_str": "2.5–4.0 kg",
+      "rata_jantan": 4.25,
+      "rata_betina": 3.25,
+      "keterangan": "Berat stabil; monitor sebulan sekali"
+    },
+    {
+      "usia": "7+ tahun",
+      "fase": "Senior",
+      "berat_jantan_str": "3.0–4.5 kg",
+      "berat_betina_str": "2.2–3.8 kg",
+      "rata_jantan": 3.75,
+      "rata_betina": 3.0,
+      "keterangan": "Pantau nutrisi & kesehatan ekstra"
+    }
+  ]
+}

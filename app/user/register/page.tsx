@@ -36,6 +36,7 @@ export default function UserRegisterPage() {
     "months"
   );
   const [weight, setWeight] = useState(1);
+  const [gender, setGender] = useState<"jantan" | "betina">("jantan");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -77,12 +78,18 @@ export default function UserRegisterPage() {
           ageUnit,
           weight,
           password,
+          gender,
         }),
       });
 
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        throw new Error("Respon server tidak valid");
+      }
 
-      if (result.success) {
+      if (response.ok && result.success) {
         toast({
           title: "Registrasi Berhasil",
           description: "Silakan login dengan akun Anda",
@@ -91,14 +98,14 @@ export default function UserRegisterPage() {
       } else {
         toast({
           title: "Registrasi Gagal",
-          description: result.message,
+          description: result.message || "Terjadi kesalahan saat registrasi",
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Registrasi Gagal",
-        description: "Terjadi kesalahan saat menghubungi server",
+        description: error.message || "Terjadi kesalahan saat menghubungi server",
         variant: "destructive",
       });
     } finally {
@@ -166,6 +173,18 @@ export default function UserRegisterPage() {
                   <SelectItem value="ragdoll">Ragdoll</SelectItem>
                   <SelectItem value="kampung">Kampung</SelectItem>
                   <SelectItem value="lainnya">Lainnya</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="gender">Jenis Kelamin</Label>
+              <Select value={gender} onValueChange={(value: "jantan" | "betina") => setGender(value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih jenis kelamin" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="jantan">Jantan (Cowok)</SelectItem>
+                  <SelectItem value="betina">Betina (Cewek)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

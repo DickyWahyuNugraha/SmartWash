@@ -29,6 +29,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/tabs";
+import {
   Cat,
   LogOut,
   Droplets,
@@ -65,52 +71,7 @@ import {
 } from "@/lib/firestore-service";
 import { useToast } from "@/hooks/use-toast";
 
-// Age helper: convert to months
-function getAgeInMonths(age: number, ageUnit: "weeks" | "months" | "years"): number {
-  if (ageUnit === "weeks") return age / 4;
-  if (ageUnit === "months") return age;
-  return age * 12;
-}
-
-// Guideline-based weight range from the shared image (kg)
-// - 1–2 bulan: 0.5–1.5
-// - 3 bulan: 1.5–2.5
-// - 4–6 bulan: 2.5–3.5
-// - 7–12 bulan: 3.5–4.5
-// - 1–7 tahun: 3.5–5.5
-function getGuidelineWeightRange(
-  age: number,
-  ageUnit: "weeks" | "months" | "years",
-): { min: number; max: number } {
-  const m = getAgeInMonths(age, ageUnit);
-
-  if (m <= 2) return { min: 0.5, max: 1.5 };
-  if (Math.round(m) === 3) return { min: 1.5, max: 2.5 };
-  if (m >= 4 && m <= 6) return { min: 2.5, max: 3.5 };
-  if (m >= 7 && m <= 12) return { min: 3.5, max: 4.5 };
-  // > 12 months (1–7 years)
-  return { min: 3.5, max: 5.5 };
-}
-
-// Ideal weight as midpoint of guideline range
-function calculateIdealWeight(
-  age: number,
-  ageUnit: "weeks" | "months" | "years",
-): number {
-  const { min, max } = getGuidelineWeightRange(age, ageUnit);
-  return (min + max) / 2;
-}
-
-// Obesity check: > 120% of guideline max for the age
-function isObeseByGuideline(
-  age: number,
-  ageUnit: "weeks" | "months" | "years",
-  weightGrams: number,
-): boolean {
-  const { max } = getGuidelineWeightRange(age, ageUnit);
-  const weightKg = weightGrams / 1000;
-  return weightKg > max * 1.2;
-}
+import { getWeightInfo, getCleanBreedName } from "@/lib/weightHelper";
 
 export default function UserDashboardPage() {
   const router = useRouter();
@@ -135,6 +96,10 @@ export default function UserDashboardPage() {
     "months",
   );
   const [editWeight, setEditWeight] = useState(1);
+  const [editGender, setEditGender] = useState<"jantan" | "betina">("jantan");
+  const [editCatName, setEditCatName] = useState("");
+  const [editCatType, setEditCatType] = useState("");
+  const [editPassword, setEditPassword] = useState("");
   const [isStartingBathing, setIsStartingBathing] = useState(false);
   const [isStartingDrying, setIsStartingDrying] = useState(false);
   const [activeBathingSession, setActiveBathingSession] = useState<any>(null);
@@ -545,6 +510,31 @@ export default function UserDashboardPage() {
       setEditAge(user.age);
       setEditAgeUnit(user.ageUnit);
       setEditWeight(user.weight / 1000); // Convert from grams to kg
+      setEditGender(user.gender || "jantan");
+      setEditCatName(user.catName);
+      
+      // Map stored catType to match database and dropdown values
+      let currentType = (user.catType || "").toLowerCase();
+      if (currentType.includes("kampung") || currentType.includes("lokal")) {
+        currentType = "kampung";
+      } else if (currentType.includes("persia") || currentType.includes("pesia")) {
+        currentType = "persia";
+      } else if (currentType.includes("anggora")) {
+        currentType = "anggora";
+      } else if (currentType.includes("maine") || currentType.includes("coon")) {
+        currentType = "maine-coon";
+      } else if (currentType.includes("british")) {
+        currentType = "british-shorthair";
+      } else if (currentType.includes("scottish")) {
+        currentType = "scottish-fold";
+      } else if (currentType.includes("ragdoll")) {
+        currentType = "ragdoll";
+      } else {
+        currentType = "lainnya";
+      }
+      setEditCatType(currentType);
+      
+      setEditPassword("");
       setIsEditDialogOpen(true);
     }
   };
@@ -564,6 +554,10 @@ export default function UserDashboardPage() {
           age: editAge,
           ageUnit: editAgeUnit,
           weight: editWeight,
+          gender: editGender,
+          catName: editCatName,
+          catType: editCatType,
+          password: editPassword,
         }),
       });
 
@@ -602,22 +596,30 @@ export default function UserDashboardPage() {
     return null;
   }
 
-  const guidelineRange = getGuidelineWeightRange(user.age, user.ageUnit);
-  const idealWeight = calculateIdealWeight(user.age, user.ageUnit);
-  const obese = isObeseByGuideline(user.age, user.ageUnit, user.weight);
+  const weightInfo = getWeightInfo(
+    user.catType || "Kucing Kampung (Lokal)",
+    user.age,
+    user.ageUnit,
+    user.weight,
+    user.gender || "jantan"
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
       {/* Header */}
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-cyan-500/10 rounded-full flex items-center justify-center">
+          <div 
+            className="flex items-center gap-3 cursor-pointer hover:opacity-85 transition-opacity duration-200"
+            onClick={handleOpenEditDialog}
+            title="Klik untuk mengedit profil kucing & akun"
+          >
+            <div className="w-10 h-10 bg-cyan-500/10 rounded-full flex items-center justify-center hover:bg-cyan-500/20 transition-colors duration-200">
               <Cat className="w-5 h-5 text-cyan-600" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold">{user.catName}</h1>
+                <h1 className="text-xl font-bold hover:text-cyan-600 transition-colors duration-200">{user.catName}</h1>
                 {user.tipeBulu === 1 && (
                   <Badge className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-none shadow-md animate-pulse">
                     Bulu Panjang (Mode 1)
@@ -1089,7 +1091,11 @@ export default function UserDashboardPage() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Jenis:</span>
-                <Badge variant="secondary">{user.catType}</Badge>
+                <Badge variant="secondary">{getCleanBreedName(user.catType || "Kucing Kampung (Lokal)")}</Badge>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Jenis Kelamin:</span>
+                <span className="font-medium capitalize">{user.gender === "betina" ? "Betina (Cewek)" : "Jantan (Cowok)"}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Umur:</span>
@@ -1106,26 +1112,61 @@ export default function UserDashboardPage() {
                 <span className="text-muted-foreground">Berat Badan:</span>
                 <div className="flex items-center gap-2">
                   <span className="font-medium">
-                    {(user.weight / 1000).toFixed(1)} kg
+                    {(user.weight / 1000).toFixed(2)} kg
                   </span>
-                  {obese && (
-                    <Badge className="bg-red-500 text-white">Obesitas</Badge>
+                  {weightInfo.status === "Kurus" && (
+                    <Badge className="bg-amber-500 hover:bg-amber-600 text-white border-none shadow-sm">Kurus</Badge>
+                  )}
+                  {weightInfo.status === "Normal" && (
+                    <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white border-none shadow-sm">Normal</Badge>
+                  )}
+                  {weightInfo.status === "Obesitas" && (
+                    <Badge className="bg-red-500 hover:bg-red-600 text-white border-none shadow-sm">Obesitas</Badge>
                   )}
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">
-                  Rentang Berat Ideal (panduan usia):
+                  Master Berat Ideal ({user.gender === "betina" ? "Betina" : "Jantan"}):
                 </span>
                 <span className="font-medium">
-                  {guidelineRange.min.toFixed(1)}–{guidelineRange.max.toFixed(1)} kg
+                  {weightInfo.masterWeight.toFixed(2)} kg
                 </span>
               </div>
-              {obese && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">
+                  Batas Ideal Excel:
+                </span>
+                <span className="font-medium">
+                  {weightInfo.rawRangeString || "-"}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">
+                  Rentang Toleransi Normal (-10% / +20%):
+                </span>
+                <span className="font-medium">
+                  {weightInfo.idealRange.min.toFixed(2)}–{weightInfo.idealRange.max.toFixed(2)} kg
+                </span>
+              </div>
+              {weightInfo.keterangan && (
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Info Pertumbuhan:</span>
+                  <span className="font-medium text-xs text-right max-w-[250px]">{weightInfo.keterangan}</span>
+                </div>
+              )}
+              {weightInfo.status !== "Normal" && (
                 <div className="md:col-span-2">
-                  <div className="w-full border border-red-300 bg-red-50 text-red-700 rounded px-3 py-2 text-sm">
-                    Peringatan: Kucing terindikasi obesitas. Berat saat ini melebihi 120% dari batas atas
-                    rentang berat ideal untuk usianya.
+                  <div className={`w-full border rounded px-3 py-2 text-sm ${
+                    weightInfo.status === "Obesitas" 
+                      ? "border-red-300 bg-red-50 text-red-700" 
+                      : "border-amber-300 bg-amber-50 text-amber-700"
+                  }`}>
+                    {weightInfo.status === "Obesitas" ? (
+                      <>Peringatan: Kucing terindikasi <strong>Obesitas</strong>. Berat saat ini melebihi batas toleransi normal maksimal ({weightInfo.idealRange.max.toFixed(2)} kg, 20% di atas batas ideal).</>
+                    ) : (
+                      <>Peringatan: Kucing terindikasi <strong>Kurus</strong>. Berat saat ini di bawah batas toleransi normal minimal ({weightInfo.idealRange.min.toFixed(2)} kg, 10% di bawah batas ideal).</>
+                    )}
                   </div>
                 </div>
               )}
@@ -1180,59 +1221,131 @@ export default function UserDashboardPage() {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
-            <DialogTitle>Edit Profil Kucing</DialogTitle>
+            <DialogTitle>Profil Kucing & Akun Pengguna</DialogTitle>
             <DialogDescription>
-              Perbarui informasi umur dan berat badan kucing Anda
+              Perbarui informasi profil kucing dan kredensial akun Anda.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="grid grid-cols-2 gap-4">
+          
+          <Tabs defaultValue="kucing" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="kucing">Profil Kucing</TabsTrigger>
+              <TabsTrigger value="akun">Akun Pengguna</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="kucing" className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label htmlFor="editAge">Umur</Label>
+                <Label htmlFor="editCatName">Nama Kucing</Label>
                 <Input
-                  id="editAge"
-                  type="number"
-                  min="1"
-                  max="30"
-                  value={editAge}
-                  onChange={(e) => setEditAge(parseInt(e.target.value) || 1)}
+                  id="editCatName"
+                  value={editCatName}
+                  onChange={(e) => setEditCatName(e.target.value)}
+                  required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="editAgeUnit">Satuan Umur</Label>
-                <Select
-                  value={editAgeUnit}
-                  onValueChange={(value: "weeks" | "months" | "years") =>
-                    setEditAgeUnit(value)
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih satuan" />
+                <Label htmlFor="editCatType">Jenis Kucing</Label>
+                <Select value={editCatType} onValueChange={setEditCatType}>
+                  <SelectTrigger id="editCatType">
+                    <SelectValue placeholder="Pilih jenis kucing" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="weeks">Minggu</SelectItem>
-                    <SelectItem value="months">Bulan</SelectItem>
-                    <SelectItem value="years">Tahun</SelectItem>
+                    <SelectItem value="persia">Persia</SelectItem>
+                    <SelectItem value="anggora">Anggora (Turkish)</SelectItem>
+                    <SelectItem value="maine-coon">Maine Coon</SelectItem>
+                    <SelectItem value="british-shorthair">British Shorthair</SelectItem>
+                    <SelectItem value="scottish-fold">Scottish Fold</SelectItem>
+                    <SelectItem value="ragdoll">Ragdoll</SelectItem>
+                    <SelectItem value="kampung">Kucing Kampung (Lokal)</SelectItem>
+                    <SelectItem value="lainnya">Lainnya</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="editWeight">Berat Badan (kg)</Label>
-              <Input
-                id="editWeight"
-                type="number"
-                step="0.1"
-                min="0.1"
-                max="20"
-                value={editWeight}
-                onChange={(e) => setEditWeight(parseFloat(e.target.value) || 0)}
-              />
-              <p className="text-xs text-muted-foreground">
-                Masukkan berat badan dalam kilogram (contoh: 1.3 untuk 1.3 kg)
-              </p>
-            </div>
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="editGender">Jenis Kelamin</Label>
+                <Select
+                  value={editGender}
+                  onValueChange={(value: "jantan" | "betina") => setEditGender(value)}
+                >
+                  <SelectTrigger id="editGender">
+                    <SelectValue placeholder="Pilih jenis kelamin" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="jantan">Jantan (Cowok)</SelectItem>
+                    <SelectItem value="betina">Betina (Cewek)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="editAge">Umur</Label>
+                  <Input
+                    id="editAge"
+                    type="number"
+                    min="1"
+                    max="30"
+                    value={editAge}
+                    onChange={(e) => setEditAge(parseInt(e.target.value) || 1)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="editAgeUnit">Satuan Umur</Label>
+                  <Select
+                    value={editAgeUnit}
+                    onValueChange={(value: "weeks" | "months" | "years") =>
+                      setEditAgeUnit(value)
+                    }
+                  >
+                    <SelectTrigger id="editAgeUnit">
+                      <SelectValue placeholder="Pilih satuan" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="weeks">Minggu</SelectItem>
+                      <SelectItem value="months">Bulan</SelectItem>
+                      <SelectItem value="years">Tahun</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="editWeight">Berat Badan (kg)</Label>
+                <Input
+                  id="editWeight"
+                  type="number"
+                  step="0.01"
+                  min="0.1"
+                  max="20"
+                  value={editWeight}
+                  onChange={(e) => setEditWeight(parseFloat(e.target.value) || 0)}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Masukkan berat badan dalam kilogram (contoh: 1.3 untuk 1.3 kg)
+                </p>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="akun" className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="editEmail">Email (Tidak dapat diubah)</Label>
+                <Input
+                  id="editEmail"
+                  value={user.email}
+                  disabled
+                  className="bg-muted text-muted-foreground"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="editPassword">Password Baru (Biarkan kosong jika tidak ingin diubah)</Label>
+                <Input
+                  id="editPassword"
+                  type="password"
+                  value={editPassword}
+                  onChange={(e) => setEditPassword(e.target.value)}
+                  placeholder="••••••••"
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
           <DialogFooter>
             <Button
               variant="outline"

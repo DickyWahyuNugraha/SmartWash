@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS public.users (
     age integer,
     age_unit character varying(20),
     weight double precision,
+    gender character varying(10) DEFAULT 'jantan'::character varying,
     fur_type character varying(20) DEFAULT 'short'::character varying,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     tipe_bulu integer DEFAULT 0

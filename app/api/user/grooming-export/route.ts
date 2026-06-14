@@ -144,7 +144,7 @@ export async function GET(request: NextRequest) {
     drawText(
       `Umur: ${user.age ?? "-"} ${user.age_unit === "weeks" ? "minggu" : user.age_unit === "months" ? "bulan" : "tahun"}`
     );
-    drawText(`Berat: ${user.weight ? (user.weight / 1000).toFixed(1) + " kg" : "-"}`);
+    drawText(`Berat: ${user.weight ? (user.weight / 1000).toFixed(2) + " kg" : "-"}`);
     drawText(`Email: ${user.email ?? "-"}`);
     y -= 6;
 

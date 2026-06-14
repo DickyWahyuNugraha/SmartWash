@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
 
     // Find user by ID in PostgreSQL
     const result = await query(
-      "SELECT id, email, cat_name, cat_type, age, age_unit, weight, fur_type, created_at, tipe_bulu FROM users WHERE id = $1 LIMIT 1",
+      "SELECT id, email, cat_name, cat_type, age, age_unit, weight, fur_type, created_at, tipe_bulu, gender FROM users WHERE id = $1 LIMIT 1",
       [userId]
     );
 
@@ -51,6 +51,7 @@ export async function GET(request: NextRequest) {
           furType: user.fur_type,
           createdAt: user.created_at,
           tipeBulu: user.tipe_bulu,
+          gender: user.gender,
         },
       },
       { status: 200 }
