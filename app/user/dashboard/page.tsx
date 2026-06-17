@@ -52,6 +52,7 @@ import {
   Cpu,
   Lightbulb,
   Camera,
+  Utensils,
 } from "lucide-react";
 import {
   getSession,
@@ -71,7 +72,7 @@ import {
 } from "@/lib/firestore-service";
 import { useToast } from "@/hooks/use-toast";
 
-import { getWeightInfo, getCleanBreedName } from "@/lib/weightHelper";
+import { getWeightInfo, getCleanBreedName, getAgeInMonths } from "@/lib/weightHelper";
 
 export default function UserDashboardPage() {
   const router = useRouter();
@@ -604,6 +605,33 @@ export default function UserDashboardPage() {
     user.gender || "jantan"
   );
 
+  // Perhitungan rekomendasi porsi makan
+  const catAgeMonths = getAgeInMonths(user.age, user.ageUnit);
+  let foodAgeGroup = "Dewasa (1-7 tahun)";
+  let normalFoodFrequency = "2-3 kali makan / hari";
+  let normalFoodPortionMin = 50;
+  let normalFoodPortionMax = 70;
+
+  if (catAgeMonths <= 6) {
+    foodAgeGroup = "Kittens (0-6 bulan)";
+    normalFoodFrequency = "4-5 kali makan / hari";
+    normalFoodPortionMin = 25;
+    normalFoodPortionMax = 40;
+  } else if (catAgeMonths <= 12) {
+    foodAgeGroup = "Remaja (6-12 bulan)";
+    normalFoodFrequency = "3-4 kali makan / hari";
+    normalFoodPortionMin = 40;
+    normalFoodPortionMax = 50;
+  }
+
+  let finalFoodPortionMin = normalFoodPortionMin;
+  let finalFoodPortionMax = normalFoodPortionMax;
+  
+  if (weightInfo.status === "Obesitas") {
+    finalFoodPortionMin = Math.round(normalFoodPortionMin * 0.8);
+    finalFoodPortionMax = Math.round(normalFoodPortionMax * 0.8);
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
       {/* Header */}
@@ -1135,7 +1163,7 @@ export default function UserDashboardPage() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">
-                  Batas Ideal Excel:
+                  Batas Ideal:
                 </span>
                 <span className="font-medium">
                   {weightInfo.rawRangeString || "-"}
@@ -1170,6 +1198,93 @@ export default function UserDashboardPage() {
                   </div>
                 </div>
               )}
+
+              {/* Rekomendasi Porsi Makan Section */}
+              <div className="md:col-span-2 border-t pt-6 mt-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2">
+                    <Utensils className="w-5 h-5 text-emerald-600 animate-bounce" />
+                    <h3 className="font-semibold text-lg text-emerald-800">Rekomendasi Porsi Makan</h3>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 border-none">
+                      {foodAgeGroup}
+                    </Badge>
+                    {weightInfo.status === "Obesitas" && (
+                      <Badge className="bg-red-100 text-red-800 hover:bg-red-100 border-none animate-pulse">
+                        -20% (Obesitas)
+                      </Badge>
+                    )}
+                    {weightInfo.status === "Kurus" && (
+                      <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 border-none animate-pulse">
+                        +20% Kalori (Kurus)
+                      </Badge>
+                    )}
+                    {weightInfo.status === "Normal" && (
+                      <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 border-none">
+                        Porsi Ideal (Normal)
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Box 1: Frekuensi */}
+                  <div className="bg-slate-50 border border-slate-100 rounded-lg p-4 flex flex-col justify-between hover:shadow-sm transition-shadow">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-slate-400" /> Frekuensi
+                    </span>
+                    <span className="text-base font-bold text-slate-800 mt-2">{normalFoodFrequency}</span>
+                  </div>
+
+                  {/* Box 2: Porsi Normal */}
+                  <div className="bg-slate-50 border border-slate-100 rounded-lg p-4 flex flex-col justify-between hover:shadow-sm transition-shadow">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                      <Utensils className="w-3.5 h-3.5 text-slate-400" /> Porsi Normal
+                    </span>
+                    <span className="text-base font-bold text-slate-800 mt-2">{normalFoodPortionMin} - {normalFoodPortionMax} gr</span>
+                  </div>
+
+                  {/* Box 3: Rekomendasi Saat Ini */}
+                  <div className={`border rounded-lg p-4 flex flex-col justify-between shadow-sm transition-all hover:scale-[1.02] ${
+                    weightInfo.status === "Obesitas"
+                      ? "border-red-200 bg-red-50/40 text-red-900"
+                      : weightInfo.status === "Kurus"
+                        ? "border-amber-200 bg-amber-50/40 text-amber-900"
+                        : "border-emerald-200 bg-emerald-50/40 text-emerald-900"
+                  }`}>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                      Rekomendasi Saat Ini
+                    </span>
+                    <span className="text-lg font-extrabold mt-2">
+                      {finalFoodPortionMin} - {finalFoodPortionMax} gr<span className="text-xs font-normal text-slate-500"> / porsi makan</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Info Alert Box */}
+                <div className={`mt-4 border rounded-lg px-3 py-3 text-sm flex items-start gap-2.5 shadow-xs ${
+                  weightInfo.status === "Obesitas"
+                    ? "border-red-200 bg-red-50 text-red-800"
+                    : weightInfo.status === "Kurus"
+                      ? "border-amber-200 bg-amber-50 text-amber-800"
+                      : "border-emerald-200 bg-emerald-50 text-emerald-800"
+                }`}>
+                  <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-current animate-pulse" />
+                  <div className="leading-relaxed">
+                    {weightInfo.status === "Obesitas" && (
+                      <>Porsi telah dikurangi 20% dari batas normal ({normalFoodPortionMin} - {normalFoodPortionMax} gr) untuk membantu diet kucing Anda.</>
+                    )}
+                    {weightInfo.status === "Kurus" && (
+                      <>Porsi tetap sama ({normalFoodPortionMin} - {normalFoodPortionMax} gr). <strong className="text-amber-950">Keterangan:</strong> Menambahkan 20% kalori ekstra pada makanan untuk membantu tumbuh kembang kucing Anda.</>
+                    )}
+                    {weightInfo.status === "Normal" && (
+                      <>Porsi makan ideal ({normalFoodPortionMin} - {normalFoodPortionMax} gr). Pertahankan pola makan kucing Anda agar tetap sehat.</>
+                    )}
+                  </div>
+                </div>
+              </div>
+
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Email:</span>
                 <span className="font-medium">{user.email}</span>
