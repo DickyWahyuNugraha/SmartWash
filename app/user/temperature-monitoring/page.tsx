@@ -125,7 +125,7 @@ export default function TemperatureMonitoringPage() {
             <CardContent>
               <div className="text-center">
                 <div className="text-6xl font-bold text-cyan-600 mb-2">
-                  {waterTemperature !== null ? `${waterTemperature}°C` : "--"}
+                  {waterTemperature !== null ? `${waterTemperature.toString().replace(".", ",")}°C` : "--"}
                 </div>
                 {waterTemperature === null && (
                   <p className="text-sm text-muted-foreground">Menunggu data</p>
@@ -155,7 +155,7 @@ export default function TemperatureMonitoringPage() {
             <CardContent>
               <div className="text-center">
                 <div className="text-6xl font-bold text-blue-600 mb-2">
-                  {roomTemperature !== null ? `${roomTemperature}°C` : "--"}
+                  {roomTemperature !== null ? `${roomTemperature.toString().replace(".", ",")}°C` : "--"}
                 </div>
                 {roomTemperature === null && (
                   <p className="text-sm text-muted-foreground">Menunggu data</p>

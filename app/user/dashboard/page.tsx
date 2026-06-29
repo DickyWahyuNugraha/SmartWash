@@ -694,7 +694,7 @@ export default function UserDashboardPage() {
                 </div>
                 <div className="text-3xl font-bold text-gray-800">
                   {waterTemperature !== null
-                    ? `${Math.round(waterTemperature)}°C`
+                    ? `${waterTemperature.toString().replace(".", ",")}°C`
                     : "--"}
                 </div>
               </div>
@@ -715,7 +715,7 @@ export default function UserDashboardPage() {
                 </div>
                 <div className="text-3xl font-bold text-gray-800">
                   {roomTemperature !== null
-                    ? `${Math.round(roomTemperature)}°C`
+                    ? `${roomTemperature.toString().replace(".", ",")}°C`
                     : "--"}
                 </div>
               </div>

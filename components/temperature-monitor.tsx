@@ -90,7 +90,7 @@ export function TemperatureMonitor({
             ) : (
               <>
                 <div className={`text-6xl font-bold ${getTemperatureColor()}`}>
-                  {Math.round(displayTemp)}°C
+                  {displayTemp.toString().replace(".", ",")}°C
                 </div>
                 <div className="text-sm text-muted-foreground mt-2">
                   {getTemperatureStatus()}

@@ -131,19 +131,19 @@ export function TemperatureHistory({
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-cyan-600">
-                  {avgTemp}°C
+                  {avgTemp.replace(".", ",")}°C
                 </div>
                 <div className="text-xs text-muted-foreground">Rata-rata</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-blue-600">
-                  {minTemp}°C
+                  {minTemp.toString().replace(".", ",")}°C
                 </div>
                 <div className="text-xs text-muted-foreground">Minimum</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-red-600">
-                  {maxTemp}°C
+                  {maxTemp.toString().replace(".", ",")}°C
                 </div>
                 <div className="text-xs text-muted-foreground">Maksimum</div>
               </div>
