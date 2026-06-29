@@ -67,6 +67,7 @@ export default function WiFiConnection() {
       toast({
         title: "Berhasil Terhubung",
         description: `Terhubung ke ${selectedNetwork}`,
+        variant: "success",
       });
     } else {
       toast({
@@ -83,6 +84,7 @@ export default function WiFiConnection() {
     toast({
       title: "WiFi Terputus",
       description: "Koneksi WiFi telah diputus",
+      variant: "success",
     });
   };
 
@@ -92,6 +94,7 @@ export default function WiFiConnection() {
     toast({
       title: "Scan Selesai",
       description: `Ditemukan ${availableNetworks.length} jaringan WiFi`,
+      variant: "success",
     });
   };
 
@@ -101,6 +104,7 @@ export default function WiFiConnection() {
     toast({
       title: "ESP Devices Ditemukan",
       description: `${espDevices.length} alat ESP terhubung`,
+      variant: "success",
     });
   };
 
@@ -115,6 +119,7 @@ export default function WiFiConnection() {
       toast({
         title: "ESP Terhubung",
         description: `Berhasil terhubung ke ${device.name}`,
+        variant: "success",
       });
     }
   };

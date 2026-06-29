@@ -378,6 +378,7 @@ export default function UserDashboardPage() {
       toast({
           title: "Proses Pemandian Dimulai",
           description: "Proses pemandian telah dimulai.",
+          variant: "success",
       });
         // Tidak ada auto-continue ke pengeringan
     } catch (error) {
@@ -410,6 +411,7 @@ export default function UserDashboardPage() {
           toast({
             title: "Proses Pengeringan Selesai",
             description: "Proses pengeringan telah selesai.",
+            variant: "success",
           });
         }
       } catch (error) {
@@ -469,6 +471,7 @@ export default function UserDashboardPage() {
       toast({
         title: "Proses Pengeringan Dimulai",
         description: "Proses pengeringan telah dimulai.",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error starting drying:", error);
@@ -570,6 +573,7 @@ export default function UserDashboardPage() {
         toast({
           title: "Profil Berhasil Diperbarui",
           description: "Informasi kucing Anda telah diperbarui.",
+          variant: "success",
         });
         // Recalculate ideal weight and obesity status
         loadLastGrooming(result.user.id);

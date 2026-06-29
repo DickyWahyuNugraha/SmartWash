@@ -49,6 +49,7 @@ export default function UserLoginPage() {
         toast({
           title: "Login Berhasil",
           description: `Selamat datang, ${catName}!`,
+          variant: "success",
         })
         router.push("/user/dashboard")
       } else {

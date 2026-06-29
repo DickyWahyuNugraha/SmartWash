@@ -101,6 +101,7 @@ export default function BathingControlPage() {
       toast({
         title: "Pemandian Dimulai",
         description: "Sesi pemandian telah dimulai secara otomatis",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error starting session:", error);
@@ -217,6 +218,7 @@ export default function BathingControlPage() {
       toast({
         title: "Pemandian Dimulai",
         description: "Sesi pemandian telah dimulai dan disimpan ke Firestore",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error starting session:", error);
@@ -242,6 +244,7 @@ export default function BathingControlPage() {
         toast({
           title: "Pemandian Selesai",
           description: "Mengalihkan ke halaman pengeringan...",
+          variant: "success",
         });
         setTimeout(() => {
           router.push("/user/drying");
@@ -250,6 +253,7 @@ export default function BathingControlPage() {
         toast({
           title: "Pemandian Selesai",
           description: "Sesi pemandian telah dihentikan dan disimpan",
+          variant: "success",
         });
       }
     } catch (error) {

@@ -99,6 +99,7 @@ export default function DryingControlPage() {
       toast({
         title: "Pengering Dimulai",
         description: "Sesi pengering telah dimulai secara otomatis",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error starting session:", error);
@@ -211,6 +212,7 @@ export default function DryingControlPage() {
       toast({
         title: "Pengering Dimulai",
         description: "Sesi pengering telah dimulai dan disimpan ke Firestore",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error starting session:", error);
@@ -235,6 +237,7 @@ export default function DryingControlPage() {
       toast({
         title: "Pengering Selesai",
         description: "Sesi pengering telah dihentikan dan disimpan",
+        variant: "success",
       });
     } catch (error) {
       console.error("Error stopping session:", error);

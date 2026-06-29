@@ -93,6 +93,7 @@ export default function UserRegisterPage() {
         toast({
           title: "Registrasi Berhasil",
           description: "Silakan login dengan akun Anda",
+          variant: "success",
         });
         router.push("/user/login");
       } else {
